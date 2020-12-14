@@ -1,0 +1,48 @@
+"""
+Fecha: 14/12/2020
+Autor: Eduardo Enrique Moo Cruz
+N° Control: 18390013
+"""
+
+import matplotlib.pyplot as plt
+import numpy as np 
+
+plt.axis([-50,80,-50,50])
+plt.axis('on')
+plt.grid(True)
+
+#Realizar el Circulo
+p1=0*np.pi/180
+p2=370*np.pi/180
+dp=(p2-p1)/100
+
+sx=.6 #Sx = Ultimo digito de mi numero de control "3" / 5
+sy=5 #Sy = Penultimo digito de mi numero de control "1" / 5
+r=15 # Ultimmo digito de mi numero de control "3" * 5
+
+xlast=sx+r*np.cos(p1)
+ylast=sy+r*np.sin(p1)
+
+for p in np.arange(p1,p2,dp):
+    xp=sx+r*np.cos(p)
+    yp=sy+r*np.sin(p)
+    plt.plot([xlast,xp],[ylast,yp],color=(0,.1,.3),linewidth=2)
+    xlast=xp
+    ylast=yp
+
+#Realizar el primer Rectangulo
+plt.plot([-29.4,30.6],[25,25],linewidth=2,color=(0,.1,.3))
+plt.plot([-29.4,30.6],[-15,-15],linewidth=2,color=(0,.1,.3))
+plt.plot([-29.4,-29.4],[-15,25],linewidth=2,color=(0,.1,.3))
+plt.plot([30.6,30.6],[-15,25],linewidth=2,color=(0,.1,.3))
+
+#Realizar el segundo Rectangulo
+plt.plot([.6,59.4],[5,5],linewidth=2,color=(0,.1,.3))
+plt.plot([.6,59.4],[-35,-35],linewidth=2,color=(0,.1,.3))
+plt.plot([.6,.6],[-35,5],linewidth=2,color=(0,.1,.3))
+plt.plot([59.4,59.4],[-35,5],linewidth=2,color=(0,.1,.3))
+
+#Ajustar a la pantalla
+plt.axes().set_aspect('equal')
+
+plt.show()
